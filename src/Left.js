@@ -1,8 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 import Right from "./Right";
-import App from "./App";
 
 const Left = () => {
   const [bill, setBill] = useState(0);
@@ -21,20 +19,16 @@ const Left = () => {
     setCalcTip(event.target.value);
   };
 
+  const handleCustom = (event) => {
+    setCalcTip(event.target.value);
+  };
+
   const finalAmount = () => {
     const individualBill = bill / people;
     const tipValue = (individualBill * calcTip) / 100;
     const finalAmountPerPerson = individualBill + tipValue;
     setIndividualTip(tipValue);
     setTotalAmount(finalAmountPerPerson);
-  };
-
-  const handleReset = () => {
-    setBill(0);
-    setPeople(0);
-    setCalcTip(0);
-    setIndividualTip(0);
-    setTotalAmount(0);
   };
 
   function refreshPage() {
@@ -97,9 +91,12 @@ const Left = () => {
             >
               50%
             </button>
-            <button className="bg-gray-100 rounded-md w-15 text-gray-500 transition duration-200 transform hover:scale-105">
-              Custom
-            </button>
+            <input
+              type="text"
+              placeholder="Custom"
+              onChange={handleCustom}
+              className="bg-gray-100 rounded-md w-12 h-7 text-gray-900 text-sm border-0 border-green-900 text-center"
+            />
           </div>
         </div>
         {/* Num of people */}
